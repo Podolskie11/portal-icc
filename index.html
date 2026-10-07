@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portal ICC</title>
+<meta name="description" content="Pintu masuk sistem dalaman warga ICC, UTHM">
+<meta name="theme-color" content="#14213d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Portal ICC">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* ================= TETAPAN PORTAL =================
+   * Tampal pautan Web App (…/exec) setiap sistem di sini.
+   * Untuk tambah sistem baharu kemudian, salin satu blok { … } dan ubah isinya.
+   */
+  const SISTEM = [
+    {
+      nama: 'e-PinjamAset',
+      keterangan: 'Mohon pinjam, serah & pulang aset PTj',
+      url: '',                       // ← tampal URL Web App e-PinjamAset
+      warna: '#1d8a6b',
+      ikon: '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/>'
+    },
+    {
+      nama: 'e-LogKenderaan',
+      keterangan: 'Rekod perjalanan & bahan api kenderaan pejabat',
+      url: 'https://script.google.com/a/macros/uthm.edu.my/s/AKfycbxI8JzuZugVprR8tcqESpyPNqIRAAfZ6dgAz6C6028u-gx5z5mHbBSUVYT6kJrBId2Nrw/exec',
+      warna: '#fca311',
+      ikon: '<path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v3H3z"/><path d="M5 11h14"/>'
+    }
+  ];
+  const DOMAIN = 'uthm.edu.my';
+</script>
+<style>
+:root {
+  --navy: #14213d;
+  --navy-2: #1d2f57;
+  --amber: #fca311;
+  --latar: #f4f6fb;
+  --permukaan: #ffffff;
+  --permukaan-2: #f7f8fc;
+  --teks: #141a2b;
+  --teks-2: #5b6478;
+  --garis: #e3e7f0;
+  --utama: #3454d1;
+  --bayang: 0 1px 2px rgba(20,33,61,.06), 0 6px 22px rgba(20,33,61,.08);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --latar: #0d1324;
+    --permukaan: #161e33;
+    --permukaan-2: #1c2540;
+    --teks: #e8ecf6;
+    --teks-2: #9aa4bd;
+    --garis: #27314d;
+    --utama: #6b86ff;
+    --bayang: 0 1px 2px rgba(0,0,0,.3), 0 6px 22px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; background: var(--latar); color: var(--teks);
+  font: 15px/1.5 "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+}
+h1, h2, h3, p { margin: 0; }
+.ikon { width: 22px; height: 22px; flex: none; }
+
+/* ---------- Kepala ---------- */
+.kepala {
+  background: var(--navy); color: #fff;
+  padding: calc(env(safe-area-inset-top) + 28px) 16px 88px;
+  position: relative; overflow: hidden;
+}
+.kepala::after {
+  content: ""; position: absolute; right: -80px; top: -60px; width: 280px; height: 280px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(252,163,17,.22), transparent 70%);
+}
+.kepala-dalam { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.jenama { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.jenama img { width: 40px; height: 40px; border-radius: 11px; }
+.jenama b { font-size: 18px; font-weight: 800; letter-spacing: -.2px; }
+.jenama span { display: block; font-size: 12px; color: #b9c3dd; font-weight: 600; }
+.salam { font-size: 14px; color: var(--amber); font-weight: 700; margin-bottom: 4px; }
+.kepala h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; line-height: 1.2; }
+.kepala p { color: #b9c3dd; margin-top: 6px; font-size: 14.5px; }
+
+/* ---------- Kandungan ---------- */
+main { max-width: 760px; margin: -60px auto 0; padding: 0 16px calc(32px + env(safe-area-inset-bottom)); position: relative; z-index: 2; }
+.senarai-sistem { display: grid; gap: 14px; }
+.kad-sistem {
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 14px; align-items: center;
+  background: var(--permukaan); border: 1px solid var(--garis); border-radius: 20px;
+  padding: 18px; box-shadow: var(--bayang); text-decoration: none; color: inherit;
+  transition: transform .12s, box-shadow .12s, border-color .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+a.kad-sistem:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--warna) 50%, var(--garis)); }
+a.kad-sistem:active { transform: scale(.985); }
+.kad-sistem .lencana-ikon {
+  width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--warna) 15%, transparent); color: var(--warna);
+}
+.kad-sistem .lencana-ikon .ikon { width: 28px; height: 28px; }
+.kad-sistem h2 { font-size: 17px; font-weight: 800; letter-spacing: -.2px; }
+.kad-sistem p { font-size: 13.5px; color: var(--teks-2); margin-top: 2px; }
+.kad-sistem .anak-panah {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--permukaan-2); border: 1px solid var(--garis); color: var(--teks-2);
+}
+.kad-sistem.tutup .lencana-ikon, .kad-sistem.tutup h2 { opacity: .55; }
+.kad-sistem.tutup p { color: #b06a00; font-weight: 600; }
+
+.tajuk-kecil { font-size: 12px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--teks-2); margin: 30px 4px 10px; }
+
+.kad { background: var(--permukaan); border: 1px solid var(--garis); border-radius: 20px; padding: 18px; box-shadow: var(--bayang); }
+.kad + .kad { margin-top: 12px; }
+.kad h3 { font-size: 15.5px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.kad h3 .ikon { color: var(--utama); width: 20px; height: 20px; }
+.kad p, .kad li { font-size: 14px; color: var(--teks-2); }
+.kad p { margin-top: 6px; }
+.kad ol { margin: 10px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.kad b { color: var(--teks); }
+.kongsi { display: inline-grid; place-items: center; width: 22px; height: 22px; vertical-align: -5px; border-radius: 6px; background: var(--permukaan-2); border: 1px solid var(--garis); color: var(--utama); }
+.kongsi svg { width: 15px; height: 15px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px;
+  min-height: 46px; padding: 0 20px; border-radius: 12px; border: 0; cursor: pointer;
+  font: inherit; font-weight: 700; font-size: 14.5px; background: var(--navy); color: #fff;
+}
+@media (prefers-color-scheme: dark) { .btn { background: var(--amber); color: var(--navy); } }
+
+details summary { cursor: pointer; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary h3::after { content: "+"; margin-left: auto; font-size: 20px; font-weight: 600; color: var(--teks-2); }
+details[open] summary h3::after { content: "−"; }
+
+footer { text-align: center; font-size: 12.5px; color: var(--teks-2); margin-top: 28px; }
+
+[hidden] { display: none !important; }
+
+@media (min-width: 720px) {
+  .kepala { padding-top: 40px; padding-bottom: 100px; }
+  .kepala h1 { font-size: 34px; }
+  .senarai-sistem { grid-template-columns: 1fr 1fr; }
+  .kad-sistem { grid-template-columns: 1fr; align-content: start; gap: 18px; padding: 22px; min-height: 210px; }
+  .kad-sistem .anak-panah { display: none; }
+  .kad-sistem .buka { display: inline-flex; }
+}
+.buka { display: none; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; color: var(--warna); margin-top: 10px; }
+@media (prefers-color-scheme: light) { .buka { filter: brightness(.8); } }
+</style>
+</head>
+<body>
+
+<header class="kepala">
+  <div class="kepala-dalam">
+    <div class="jenama">
+      <img src="icons/icon-192.png" alt="">
+      <div><b>Portal ICC</b><span>Universiti Tun Hussein Onn Malaysia</span></div>
+    </div>
+    <div class="salam" id="salam">Selamat datang</div>
+    <h1>Sistem dalaman warga ICC</h1>
+    <p>Pilih sistem di bawah. Log masuk menggunakan akaun Google <b style="color:#fff">@uthm.edu.my</b> anda.</p>
+  </div>
+</header>
+
+<main>
+  <section class="senarai-sistem" id="senarai-sistem" aria-label="Senarai sistem"></section>
+
+  <div class="tajuk-kecil">Panduan</div>
+
+  <section class="kad" id="kad-pasang" hidden>
+    <h3><svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Pasang di telefon</h3>
+    <div id="pasang-android" hidden>
+      <p>Pasang Portal ICC sebagai aplikasi supaya ia sentiasa ada di skrin utama telefon anda.</p>
+      <button class="btn" id="btn-pasang">Pasang aplikasi</button>
+    </div>
+    <div id="pasang-ios" hidden>
+      <ol>
+        <li>Buka halaman ini dalam <b>Safari</b>.</li>
+        <li>Tekan butang <b>Kongsi</b> <span class="kongsi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span> di bawah skrin.</li>
+        <li>Pilih <b>Add to Home Screen</b> (Tambah ke Skrin Utama), kemudian <b>Add</b>.</li>
+      </ol>
+    </div>
+    <div id="pasang-lain" hidden>
+      <ol>
+        <li><b>Android:</b> buka dalam Chrome → menu <b>⋮</b> → <b>Install app</b> / <b>Add to Home screen</b>.</li>
+        <li><b>iPhone/iPad:</b> buka dalam Safari → <b>Kongsi</b> → <b>Add to Home Screen</b>.</li>
+        <li><b>Komputer:</b> Chrome/Edge → ikon pasang di hujung bar alamat.</li>
+      </ol>
+    </div>
+  </section>
+
+  <details class="kad">
+    <summary><h3><svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Masalah log masuk?</h3></summary>
+    <ol>
+      <li>Pastikan anda log masuk ke Google dengan akaun <b>@uthm.edu.my</b>, bukan Gmail peribadi.</li>
+      <li>Jika pelayar ada <b>lebih daripada satu akaun Google</b>, sistem mungkin gagal dibuka. Gunakan tetingkap <b>Incognito</b>, atau profil pelayar yang hanya ada akaun UTHM.</li>
+      <li>Kali pertama masuk, isi borang <b>Mohon akses</b>. Admin akan aktifkan akaun anda.</li>
+      <li>Setiap sistem ada peranannya sendiri. Akses di satu sistem tidak bermaksud akses di sistem lain.</li>
+    </ol>
+  </details>
+
+  <footer>Portal ICC · UTHM</footer>
+</main>
+
+<script>
+  const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const svg = p => '<svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+  const PANAH = '<path d="M9 18l6-6-6-6"/>';
+
+  // Kad sistem
+  function renderSistem() {
+  document.getElementById('senarai-sistem').innerHTML = SISTEM.map(s => {
+    const ada = /^https:\/\//.test(s.url);
+    const dalam =
+      '<div class="lencana-ikon">' + svg(s.ikon) + '</div>' +
+      '<div><h2>' + esc(s.nama) + '</h2><p>' + (ada ? esc(s.keterangan) : 'Pautan belum ditetapkan') + '</p>' +
+        (ada ? '<span class="buka">Buka sistem ' + svg(PANAH).replace('class="ikon"', 'class="ikon" style="width:16px;height:16px"') + '</span>' : '') + '</div>' +
+      (ada ? '<div class="anak-panah">' + svg(PANAH) + '</div>' : '<div></div>');
+    return ada
+      ? '<a class="kad-sistem" style="--warna:' + esc(s.warna) + '" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + dalam + '</a>'
+      : '<div class="kad-sistem tutup" style="--warna:' + esc(s.warna) + '">' + dalam + '</div>';
+  }).join('');
+  }
+  renderSistem();
+
+  // Ucapan ikut masa
+  const jam = new Date().getHours();
+  document.getElementById('salam').textContent =
+    jam < 12 ? 'Selamat pagi' : jam < 14 ? 'Selamat tengah hari' : jam < 19 ? 'Selamat petang' : 'Selamat malam';
+
+  // Panduan pasang: sorok jika sudah dibuka sebagai app
+  const dahPasang = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const kadPasang = document.getElementById('kad-pasang');
+  if (!dahPasang) {
+    kadPasang.hidden = false;
+    document.getElementById(iOS ? 'pasang-ios' : 'pasang-lain').hidden = false;
+  }
+
+  let tawaran = null;
+  addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    tawaran = e;
+    document.getElementById('pasang-lain').hidden = true;
+    document.getElementById('pasang-android').hidden = false;
+  });
+  document.getElementById('btn-pasang').addEventListener('click', async () => {
+    if (!tawaran) return;
+    tawaran.prompt();
+    await tawaran.userChoice;
+    tawaran = null;
+  });
+  addEventListener('appinstalled', () => { kadPasang.hidden = true; });
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>
