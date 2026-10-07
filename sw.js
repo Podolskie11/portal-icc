@@ -1,6 +1,6 @@
 // Service worker: simpan rangka Portal supaya ia dibuka pantas & boleh dipasang sebagai app.
 // Naikkan VERSI setiap kali index.html dikemas kini supaya telefon pengguna dapat versi baharu.
-const VERSI = 'portal-icc-v1';
+const VERSI = 'portal-icc-v2';
 const FAIL = [
   './',
   './index.html',
@@ -24,9 +24,10 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
-  // Rangkaian dahulu (supaya pautan sentiasa terkini), cache jika luar talian
+  // Rangkaian dahulu (supaya pautan sentiasa terkini), cache jika luar talian.
+  // Halaman utama disemak semula dengan pelayan (abaikan cache HTTP 10 minit GitHub Pages).
   e.respondWith(
-    fetch(req)
+    (req.mode === 'navigate' ? fetch(req.url, { cache: 'no-cache' }) : fetch(req))
       .then(res => {
         const salinan = res.clone();
         caches.open(VERSI).then(c => c.put(req, salinan));
