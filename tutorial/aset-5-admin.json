@@ -1,0 +1,30 @@
+{
+ "saat": 62,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Buka \"Katalog Aset\" untuk melihat semua aset dan statusnya.",
+   "t": 8.2
+  },
+  {
+   "no": 2,
+   "teks": "Tekan \"Daftar aset\", isi butiran dan simpan.",
+   "t": 12.1
+  },
+  {
+   "no": 3,
+   "teks": "Aset baharu terus tersedia untuk dipinjam oleh staf.",
+   "t": 28
+  },
+  {
+   "no": 4,
+   "teks": "Di \"Pengguna\", tetapkan peranan setiap staf: Pemohon, Pegawai Aset, Ketua PTj atau Pentadbir.",
+   "t": 30.4
+  },
+  {
+   "no": 5,
+   "teks": "Peranan dikemas kini serta-merta. Staf yang berpindah boleh dinyahaktifkan di sini.",
+   "t": 41.9
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "saat": 44,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Buka e-LogKenderaan dari Portal ICC. Jika akaun UTHM anda belum berdaftar, borang Mohon akses dipaparkan.",
+   "t": 3.2
+  },
+  {
+   "no": 2,
+   "teks": "Isi nama & jawatan, kemudian tekan \"Hantar permohonan\".",
+   "t": 11.5
+  },
+  {
+   "no": 3,
+   "teks": "Admin menerima notifikasi dan akan mengaktifkan akaun anda.",
+   "t": 15.8
+  },
+  {
+   "no": 4,
+   "teks": "Selepas diaktifkan, buka sistem semula dan cipta PIN sendiri (sekurang-kurangnya 6 aksara).",
+   "t": 20.4
+  },
+  {
+   "no": 5,
+   "teks": "Selesai! Lain kali anda hanya perlu memasukkan PIN setiap kali membuka sistem.",
+   "t": 30.5
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "saat": 45,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Loceng 🔔 dan \"Tugasan\" memaklumkan permohonan yang menunggu keputusan anda.",
+   "t": 8.2
+  },
+  {
+   "no": 2,
+   "teks": "Semak butiran & catatan semakan Pegawai Aset. Pilih \"Luluskan\" atau \"Tidak diluluskan\".",
+   "t": 14.7
+  },
+  {
+   "no": 3,
+   "teks": "Pemohon menerima keputusan melalui loceng dan emel (noreply). Jika ditolak, sebab wajib dinyatakan.",
+   "t": 25.4
+  },
+  {
+   "no": 4,
+   "teks": "\"Semua Rekod\" memaparkan sejarah semua permohonan untuk rujukan & laporan.",
+   "t": 28.8
+  }
+ ]
+}

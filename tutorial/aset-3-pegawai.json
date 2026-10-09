@@ -1,0 +1,40 @@
+{
+ "saat": 71,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Buka \"Tugasan\". Setiap tab ialah satu peringkat kerja, dengan bilangan yang menunggu tindakan.",
+   "t": 8.1
+  },
+  {
+   "no": 2,
+   "teks": "Semakan: tekan \"Semak\" pada permohonan baharu.",
+   "t": 12.1
+  },
+  {
+   "no": 3,
+   "teks": "Tandakan senarai semak, tulis catatan jika perlu, dan hantar kepada Ketua PTj.",
+   "t": 17.2
+  },
+  {
+   "no": 4,
+   "teks": "Serahan: selepas Ketua PTj meluluskan, rekod penyerahan aset kepada pemohon.",
+   "t": 28.5
+  },
+  {
+   "no": 5,
+   "teks": "Pemeriksaan: apabila aset dipulangkan, periksa keadaannya.",
+   "t": 36.9
+  },
+  {
+   "no": 6,
+   "teks": "Pilih \"Ya, baik\" untuk tutup kes — atau \"Tidak\" untuk lapor kerosakan / kehilangan.",
+   "t": 42.3
+  },
+  {
+   "no": 7,
+   "teks": "Aset kembali \"Tersedia\" dan pemohon dimaklumkan secara automatik.",
+   "t": 47.4
+  }
+ ]
+}

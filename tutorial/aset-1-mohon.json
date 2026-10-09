@@ -1,0 +1,35 @@
+{
+ "saat": 49,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Akaun Google UTHM anda dikesan. Masukkan PIN dan tekan Log Masuk.",
+   "t": 3.2
+  },
+  {
+   "no": 2,
+   "teks": "Papan Utama memaparkan ringkasan permohonan anda. Tekan \"Mohon Pinjaman\".",
+   "t": 9.5
+  },
+  {
+   "no": 3,
+   "teks": "Pilih aset yang tersedia, kemudian tekan Seterusnya.",
+   "t": 13.8
+  },
+  {
+   "no": 4,
+   "teks": "Pilih tarikh mula dan tamat pada kalendar. Ketersediaan aset disemak serta-merta.",
+   "t": 19
+  },
+  {
+   "no": 5,
+   "teks": "Nyatakan tujuan penggunaan, semak ringkasan di sebelah, dan hantar.",
+   "t": 27
+  },
+  {
+   "no": 6,
+   "teks": "Permohonan dihantar kepada Pegawai Aset untuk semakan, kemudian Ketua PTj untuk kelulusan.",
+   "t": 34.4
+  }
+ ]
+}

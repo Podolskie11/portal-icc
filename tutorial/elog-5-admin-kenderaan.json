@@ -1,0 +1,35 @@
+{
+ "saat": 63,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Buka tab Kenderaan untuk melihat semua kenderaan pejabat.",
+   "t": 7.9
+  },
+  {
+   "no": 2,
+   "teks": "Tekan \"Tambah\" untuk mendaftar kenderaan baharu.",
+   "t": 11.6
+  },
+  {
+   "no": 3,
+   "teks": "Pilih jenis bahan api, kemudian tekan \"Daftar\".",
+   "t": 21
+  },
+  {
+   "no": 4,
+   "teks": "Kenderaan baharu terus muncul dalam senarai dan boleh direkod oleh pemandu.",
+   "t": 26.6
+  },
+  {
+   "no": 5,
+   "teks": "Di tab Tetapan, isi nama & jawatan pegawai yang mengesahkan borang log bulanan.",
+   "t": 29
+  },
+  {
+   "no": 6,
+   "teks": "Maklumat ini dicetak secara automatik pada bahagian \"Disahkan Oleh\" setiap borang.",
+   "t": 40.4
+  }
+ ]
+}

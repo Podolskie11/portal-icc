@@ -1,0 +1,30 @@
+{
+ "saat": 41,
+ "bab": [
+  {
+   "no": 1,
+   "teks": "Pilih kenderaan dan bulan yang hendak dicetak.",
+   "t": 7.9
+  },
+  {
+   "no": 2,
+   "teks": "Tekan butang jingga \"Jana Borang\". Borang dibuka dalam tab baharu.",
+   "t": 9.9
+  },
+  {
+   "no": 3,
+   "teks": "Borang dijana mengikut format rasmi — 10 rekod setiap muka surat, berserta jumlah & kadar bahan api.",
+   "t": 14.5
+  },
+  {
+   "no": 4,
+   "teks": "Isi No. Siri mula — setiap muka surat akan bertambah satu nombor secara automatik.",
+   "t": 17.9
+  },
+  {
+   "no": 5,
+   "teks": "Tekan \"Cetak\". Pilih kertas A4, orientasi Landscape dan matikan Headers & footers.",
+   "t": 25.2
+  }
+ ]
+}
