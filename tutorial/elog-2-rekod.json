@@ -1,10 +1,10 @@
 {
- "saat": 97,
+ "saat": 82,
  "bab": [
   {
    "no": 1,
    "teks": "Log masuk dengan PIN anda.",
-   "t": 3.3
+   "t": 3.2
   },
   {
    "no": 2,
@@ -19,37 +19,37 @@
   {
    "no": 4,
    "teks": "Isi masa perjalanan dan tujuan / destinasi.",
-   "t": 20.6
+   "t": 15.6
   },
   {
    "no": 5,
    "teks": "Nama pemandu diisi automatik. Isi nama pengguna & pelulus.",
-   "t": 32.3
+   "t": 22.1
   },
   {
    "no": 6,
    "teks": "Masukkan bacaan odometer — sistem mencadangkan jarak perjalanan. Tekan cadangan itu.",
-   "t": 47.4
+   "t": 27.2
   },
   {
    "no": 7,
    "teks": "Jika mengisi minyak: masukkan no. resit, jumlah (RM) dan liter.",
-   "t": 62.6
+   "t": 32.3
   },
   {
    "no": 8,
    "teks": "Rekod disimpan dan ringkasan dikemas kini serta-merta.",
-   "t": 76.4
+   "t": 41.7
   },
   {
    "no": 9,
    "teks": "Tersilap? Tekan ikon pensel untuk mengemas kini rekod anda sendiri.",
-   "t": 78.9
+   "t": 44.1
   },
   {
    "no": 10,
    "teks": "Gunakan anak panah di sebelah nama bulan untuk melihat rekod bulan lain.",
-   "t": 92.7
+   "t": 52.9
   }
  ]
 }
