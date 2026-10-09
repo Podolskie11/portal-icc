@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tutorial Video · Portal ICC</title>
+<meta name="description" content="Tutorial video cara menggunakan e-LogKenderaan dan e-PinjamAset">
+<meta name="theme-color" content="#14213d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* ================= SENARAI TUTORIAL =================
+   * Setiap video ada fail .mp4 (video), .jpg (gambar kecil) dan .json (bab/langkah) dalam folder tutorial/.
+   */
+  const TUTORIAL = {
+    elog: {
+      nama: 'e-LogKenderaan', warna: '#fca311',
+      senarai: [
+        { id: 'elog-1-mula', tajuk: 'Mohon akses & cipta PIN', ket: 'Langkah pertama staf baharu: mohon akses, kemudian cipta PIN selepas diaktifkan.', untuk: 'Semua staf', jenis: 'pengguna' },
+        { id: 'elog-2-rekod', tajuk: 'Rekod perjalanan kenderaan', ket: 'Tambah rekod (masa, tujuan, odometer, bahan api), edit rekod & tukar bulan.', untuk: 'Pemandu', jenis: 'pengguna' },
+        { id: 'elog-3-akaun', tajuk: 'Tukar PIN & log keluar', ket: 'Jaga keselamatan akaun anda, terutama di komputer atau telefon kongsi.', untuk: 'Semua staf', jenis: 'pengguna' },
+        { id: 'elog-4-admin-pengguna', tajuk: 'Luluskan & urus pengguna', ket: 'Aktifkan staf baharu, tetapkan peranan dan reset PIN yang terlupa.', untuk: 'Admin', jenis: 'admin' },
+        { id: 'elog-5-admin-kenderaan', tajuk: 'Daftar kenderaan & tetapan', ket: 'Tambah kenderaan pejabat dan tetapkan pegawai pengesah borang.', untuk: 'Admin', jenis: 'admin' },
+        { id: 'elog-6-cetak', tajuk: 'Jana & cetak borang bulanan', ket: 'Hasilkan borang "Butir-Butir Penggunaan Kenderaan" untuk dicetak.', untuk: 'Penyelia / Admin', jenis: 'admin' }
+      ]
+    },
+    aset: {
+      nama: 'e-PinjamAset', warna: '#1d8a6b',
+      senarai: [
+        { id: 'aset-1-mohon', tajuk: 'Mohon pinjaman aset', ket: 'Log masuk, pilih aset & tarikh, kemudian hantar permohonan.', untuk: 'Semua staf', jenis: 'pengguna' },
+        { id: 'aset-2-pulang', tajuk: 'Notifikasi & pulangkan aset', ket: 'Pantau status melalui loceng 🔔 dan pulangkan aset selepas digunakan.', untuk: 'Semua staf', jenis: 'pengguna' },
+        { id: 'aset-3-pegawai', tajuk: 'Semak, serah & periksa aset', ket: 'Tugasan Pegawai Aset dari semakan permohonan hingga pemeriksaan pemulangan.', untuk: 'Pegawai Aset', jenis: 'admin' },
+        { id: 'aset-4-ketua', tajuk: 'Luluskan permohonan', ket: 'Buat keputusan lulus / tolak berdasarkan semakan Pegawai Aset.', untuk: 'Ketua PTj', jenis: 'admin' },
+        { id: 'aset-5-admin', tajuk: 'Daftar aset & urus pengguna', ket: 'Kemas kini katalog aset dan tetapkan peranan staf.', untuk: 'Admin', jenis: 'admin' }
+      ]
+    }
+  };
+</script>
+<script>
+  try { const t = localStorage.getItem('tema'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+:root {
+  --navy: #14213d; --amber: #fca311;
+  --latar: #f4f6fb; --permukaan: #ffffff; --permukaan-2: #f7f8fc;
+  --teks: #141a2b; --teks-2: #5b6478; --garis: #e3e7f0; --utama: #3454d1;
+  --bayang: 0 1px 2px rgba(20,33,61,.06), 0 6px 22px rgba(20,33,61,.08);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --latar: #0d1324; --permukaan: #161e33; --permukaan-2: #1c2540;
+    --teks: #e8ecf6; --teks-2: #9aa4bd; --garis: #27314d; --utama: #6b86ff;
+    --bayang: 0 1px 2px rgba(0,0,0,.3), 0 6px 22px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --latar: #0d1324; --permukaan: #161e33; --permukaan-2: #1c2540;
+  --teks: #e8ecf6; --teks-2: #9aa4bd; --garis: #27314d; --utama: #6b86ff;
+  --bayang: 0 1px 2px rgba(0,0,0,.3), 0 6px 22px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; background: var(--latar); color: var(--teks); font: 15px/1.5 "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; }
+h1, h2, h3, p { margin: 0; }
+button { font: inherit; }
+.ikon { width: 20px; height: 20px; flex: none; }
+
+/* ---------- Kepala ---------- */
+.kepala { background: var(--navy); color: #fff; padding: calc(env(safe-area-inset-top) + 18px) 16px 76px; position: relative; overflow: hidden; isolation: isolate; }
+.kepala::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.5px); background-size: 22px 22px; mask-image: linear-gradient(180deg, #000 30%, transparent); -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent); }
+.kepala::after { content: ""; position: absolute; right: -90px; top: -110px; width: 320px; height: 320px; border-radius: 50%; background: rgba(252,163,17,.28); filter: blur(40px); z-index: -1; }
+.kepala-dalam { max-width: 1040px; margin: 0 auto; }
+.balik { display: inline-flex; align-items: center; gap: 6px; color: #b9c3dd; text-decoration: none; font-weight: 700; font-size: 14px; padding: 6px 10px 6px 6px; border-radius: 10px; margin-left: -6px; }
+.balik:hover { color: #fff; background: rgba(255,255,255,.08); }
+.kepala h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; margin-top: 18px; display: flex; align-items: center; gap: 10px; }
+.kepala p { color: #b9c3dd; margin-top: 6px; font-size: 14.5px; max-width: 560px; }
+.label-atas { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--amber); margin-top: 18px; }
+
+/* ---------- Pilih sistem ---------- */
+main { max-width: 1040px; margin: -52px auto 0; padding: 0 16px calc(36px + env(safe-area-inset-bottom)); position: relative; z-index: 2; }
+.segmen { display: inline-grid; grid-auto-flow: column; gap: 4px; padding: 5px; border-radius: 16px; background: var(--permukaan); border: 1px solid var(--garis); box-shadow: var(--bayang); margin-bottom: 16px; }
+.segmen button { border: 0; background: none; color: var(--teks-2); font-weight: 700; font-size: 14px; padding: 9px 16px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.segmen button .titik { width: 9px; height: 9px; border-radius: 50%; background: var(--w); }
+.segmen button.aktif { background: var(--navy); color: #fff; }
+:root[data-theme="dark"] .segmen button.aktif { background: var(--utama); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .segmen button.aktif { background: var(--utama); } }
+
+/* ---------- Pemain ---------- */
+.pentas { display: grid; gap: 18px; background: var(--permukaan); border: 1px solid var(--garis); border-radius: 24px; box-shadow: var(--bayang); padding: 16px; }
+/* Bingkai pelayar (video landskap 16:9) */
+.bingkai-skrin { border-radius: 16px; overflow: hidden; background: #0b1020; box-shadow: 0 20px 50px rgba(20,33,61,.22), 0 0 0 1px rgba(20,33,61,.12); }
+.bar-pelayar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: #1a2238; }
+.bar-pelayar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.bar-pelayar i:nth-child(2) { background: #febc2e; } .bar-pelayar i:nth-child(3) { background: #28c840; }
+.bar-pelayar span { margin-left: 10px; flex: 1; max-width: 420px; font-size: 12px; color: #9aa4bd; background: #0f1628; border-radius: 8px; padding: 4px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bingkai-skrin video { width: 100%; aspect-ratio: 16 / 9; display: block; background: #000; }
+/* Penapis peranan */
+.penapis { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+.penapis button { border: 1px solid var(--garis); background: var(--permukaan); color: var(--teks-2); font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+.penapis button.aktif { background: color-mix(in srgb, var(--w) 16%, var(--permukaan)); border-color: var(--w); color: var(--teks); }
+.panel { min-width: 0; display: flex; flex-direction: column; }
+.panel .no { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--w); }
+.panel h2 { font-size: 22px; font-weight: 800; letter-spacing: -.3px; margin-top: 4px; }
+.panel .ket { color: var(--teks-2); margin-top: 6px; }
+.lencana-untuk { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 15%, transparent); color: color-mix(in srgb, var(--w) 75%, var(--teks)); width: max-content; }
+.bab-tajuk { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--teks-2); margin: 18px 0 8px; }
+.senarai-bab { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.senarai-bab button {
+  width: 100%; display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: start; text-align: left;
+  background: none; border: 1px solid transparent; border-radius: 12px; padding: 9px 10px; cursor: pointer; color: var(--teks);
+  transition: background .2s, border-color .2s;
+}
+.senarai-bab button:hover { background: var(--permukaan-2); }
+.senarai-bab .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12.5px; font-weight: 800; background: var(--permukaan-2); border: 1px solid var(--garis); color: var(--teks-2); }
+.senarai-bab .t { font-size: 14px; line-height: 1.45; }
+.senarai-bab .m { font-size: 12px; font-weight: 700; color: var(--teks-2); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.senarai-bab button.kini { background: color-mix(in srgb, var(--w) 12%, transparent); border-color: color-mix(in srgb, var(--w) 40%, transparent); }
+.senarai-bab button.kini .n { background: var(--w); border-color: var(--w); color: #14213d; }
+.senarai-bab button.lepas .n { background: color-mix(in srgb, var(--w) 25%, transparent); color: var(--teks); }
+.kawalan { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--garis); background: var(--permukaan-2); color: var(--teks); font-weight: 700; font-size: 14px; cursor: pointer; }
+.btn:hover { border-color: var(--teks-2); }
+.btn.utama { background: var(--navy); border-color: var(--navy); color: #fff; }
+:root[data-theme="dark"] .btn.utama { background: var(--amber); border-color: var(--amber); color: var(--navy); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.utama { background: var(--amber); border-color: var(--amber); color: var(--navy); } }
+.btn:disabled { opacity: .4; cursor: default; }
+.btn .ikon { width: 17px; height: 17px; }
+
+/* ---------- Senarai main ---------- */
+.tajuk-kecil { font-size: 12px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--teks-2); margin: 26px 4px 10px; }
+.senarai-main { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.kad-video {
+  display: grid; grid-template-columns: 124px 1fr; gap: 12px; align-items: center; text-align: left; cursor: pointer;
+  background: var(--permukaan); border: 1px solid var(--garis); border-radius: 18px; padding: 10px; color: inherit; box-shadow: var(--bayang);
+  transition: transform .2s, border-color .2s;
+}
+.kad-video:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--w) 50%, var(--garis)); }
+.kad-video.aktif { border-color: var(--w); box-shadow: 0 0 0 3px color-mix(in srgb, var(--w) 25%, transparent); }
+.kad-video .gmb { position: relative; width: 124px; height: 70px; border-radius: 12px; overflow: hidden; background: var(--permukaan-2); }
+.kad-video .gmb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kad-video .gmb span { position: absolute; right: 4px; bottom: 4px; font-size: 10.5px; font-weight: 800; color: #fff; background: rgba(0,0,0,.7); padding: 1px 5px; border-radius: 6px; }
+.kad-video .no { font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: color-mix(in srgb, var(--w) 80%, var(--teks)); }
+.kad-video b { display: block; font-size: 14.5px; line-height: 1.3; margin-top: 2px; }
+.kad-video small { display: block; color: var(--teks-2); font-size: 12.5px; margin-top: 4px; }
+.kad-video .siap { color: #1d8a4e; font-weight: 700; }
+
+.nota { margin-top: 26px; font-size: 13px; color: var(--teks-2); text-align: center; }
+[hidden] { display: none !important; }
+
+@media (min-width: 820px) {
+  .kepala h1 { font-size: 34px; }
+  .pentas { padding: 22px; gap: 24px; }
+  .senarai-bab { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+  .panel { padding-top: 6px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="kepala">
+  <div class="kepala-dalam">
+    <a class="balik" href="./"><svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Portal ICC</a>
+    <div class="label-atas">Panduan pengguna</div>
+    <h1>📺 Tutorial Video</h1>
+    <p>Tonton cara menggunakan sistem sebelum mula. Tekan mana-mana langkah untuk terus ke bahagian itu dalam video.</p>
+  </div>
+</header>
+
+<main>
+  <div class="segmen" id="segmen" role="tablist" aria-label="Pilih sistem"></div>
+
+  <section class="pentas" id="pentas">
+    <div class="bingkai-skrin"><div class="bar-pelayar"><i></i><i></i><i></i><span id="url-palsu">script.google.com · e-LogKenderaan</span></div><video id="video" controls playsinline preload="metadata"></video></div>
+    <div class="panel" id="panel"></div>
+  </section>
+
+  <div class="tajuk-kecil" id="tajuk-senarai">Semua tutorial</div>
+  <div class="penapis" id="penapis" role="group" aria-label="Tapis mengikut peranan"></div>
+  <section class="senarai-main" id="senarai-main"></section>
+
+  <p class="nota">Video menggunakan <b>data contoh</b>. Paparan sebenar mungkin berbeza sedikit mengikut peranan anda.</p>
+</main>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const svg = p => '<svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+  const ls = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const video = $('video');
+  const babCache = {};
+  let sistem = 'elog', indeks = 0, babKini = [];
+
+  async function muatBab(id) {
+    if (!babCache[id]) {
+      try { babCache[id] = await (await fetch('tutorial/' + id + '.json')).json(); }
+      catch (e) { babCache[id] = { saat: 0, bab: [] }; }
+    }
+    return babCache[id];
+  }
+
+  function renderSegmen() {
+    $('segmen').innerHTML = Object.entries(TUTORIAL).map(([k, s]) =>
+      '<button role="tab" data-s="' + k + '" class="' + (k === sistem ? 'aktif' : '') + '" style="--w:' + s.warna + '"><span class="titik"></span>' + esc(s.nama) + '</button>').join('');
+    $('segmen').querySelectorAll('button').forEach(b => b.onclick = () => pilih(b.dataset.s, 0));
+  }
+
+  let penapis = 'semua';
+  async function renderSenarai() {
+    const S = TUTORIAL[sistem];
+    $('tajuk-senarai').innerHTML = 'Semua tutorial ' + esc(S.nama);
+    $('penapis').style.setProperty('--w', S.warna);
+    $('penapis').innerHTML = [['semua', 'Semua'], ['pengguna', '👤 Pengguna'], ['admin', '🛠️ Admin & staf pengurusan']]
+      .map(([k, l]) => '<button data-p="' + k + '" class="' + (penapis === k ? 'aktif' : '') + '">' + l + '</button>').join('');
+    $('penapis').querySelectorAll('button').forEach(b => b.onclick = () => { penapis = b.dataset.p; renderSenarai(); });
+    const data = await Promise.all(S.senarai.map(t => muatBab(t.id)));
+    $('senarai-main').innerHTML = S.senarai.map((t, i) => (penapis !== 'semua' && t.jenis !== penapis) ? '' :
+      '<button class="kad-video' + (i === indeks ? ' aktif' : '') + '" data-i="' + i + '" style="--w:' + S.warna + '">' +
+        '<div class="gmb"><img src="tutorial/' + t.id + '.jpg" alt="" loading="lazy">' + (data[i].saat ? '<span>' + fmt(data[i].saat) + '</span>' : '') + '</div>' +
+        '<div><div class="no">Tutorial ' + (i + 1) + '</div><b>' + esc(t.tajuk) + '</b><small>' + esc(t.untuk) +
+          (ls.get('tonton-' + t.id) ? ' · <span class="siap">✓ Ditonton</span>' : '') + '</small></div>' +
+      '</button>').join('');
+    $('senarai-main').querySelectorAll('.kad-video').forEach(b => b.onclick = () => { pilih(sistem, +b.dataset.i, true); scrollTo({ top: $('pentas').offsetTop - 12, behavior: 'smooth' }); });
+  }
+
+  async function pilih(s, i, mainTerus) {
+    sistem = s; indeks = i;
+    const S = TUTORIAL[s], t = S.senarai[i];
+    document.documentElement.style.setProperty('--w', S.warna);
+    $('pentas').style.setProperty('--w', S.warna);
+    history.replaceState(null, '', '#' + t.id);
+    renderSegmen();
+    video.poster = 'tutorial/' + t.id + '.jpg';
+    video.src = 'tutorial/' + t.id + '.mp4';
+    $('url-palsu').textContent = 'script.google.com · ' + S.nama + ' (data contoh)';
+    const d = await muatBab(t.id);
+    babKini = d.bab || [];
+    $('panel').innerHTML =
+      '<div class="no">' + esc(S.nama) + ' · Tutorial ' + (i + 1) + ' daripada ' + S.senarai.length + '</div>' +
+      '<h2>' + esc(t.tajuk) + '</h2><p class="ket">' + esc(t.ket) + '</p>' +
+      '<span class="lencana-untuk">👤 ' + esc(t.untuk) + (d.saat ? ' · ' + fmt(d.saat) : '') + '</span>' +
+      (babKini.length ? '<div class="bab-tajuk">Langkah demi langkah</div><ol class="senarai-bab">' + babKini.map((b, k) =>
+        '<li><button data-k="' + k + '"><span class="n">' + b.no + '</span><span class="t">' + esc(b.teks) + '</span><span class="m">' + fmt(b.t) + '</span></button></li>').join('') + '</ol>' : '') +
+      '<div class="kawalan">' +
+        '<button class="btn" id="btn-sebelum"' + (i === 0 ? ' disabled' : '') + '>' + svg('<path d="M15 18l-6-6 6-6"/>') + 'Sebelum</button>' +
+        '<button class="btn" id="btn-laju" title="Kelajuan main">1×</button>' +
+        '<button class="btn utama" id="btn-seterus"' + (i === S.senarai.length - 1 ? ' disabled' : '') + '>Seterusnya' + svg('<path d="M9 18l6-6-6-6"/>') + '</button>' +
+      '</div>';
+    $('panel').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { video.currentTime = babKini[+b.dataset.k].t; video.play().catch(() => {}); });
+    $('btn-sebelum').onclick = () => pilih(sistem, indeks - 1, true);
+    $('btn-seterus').onclick = () => pilih(sistem, indeks + 1, true);
+    const laju = [1, 1.5, 2, 0.75];
+    $('btn-laju').onclick = e => {
+      const n = laju[(laju.indexOf(video.playbackRate) + 1) % laju.length] || 1;
+      video.playbackRate = n; e.currentTarget.textContent = n + '×';
+    };
+    renderSenarai();
+    if (mainTerus) video.play().catch(() => {});
+  }
+
+  // Serlah langkah semasa ketika video dimainkan
+  video.addEventListener('timeupdate', () => {
+    let k = -1;
+    babKini.forEach((b, i) => { if (video.currentTime >= b.t - 0.15) k = i; });
+    $('panel').querySelectorAll('[data-k]').forEach((b, i) => { b.classList.toggle('kini', i === k); b.classList.toggle('lepas', i < k); });
+  });
+  video.addEventListener('ended', () => {
+    const t = TUTORIAL[sistem].senarai[indeks];
+    ls.set('tonton-' + t.id, '1');
+    renderSenarai();
+  });
+
+  // Mula: ikut #pautan jika ada (contoh: tutorial.html#aset-1-mohon)
+  (function () {
+    const id = location.hash.slice(1);
+    for (const [s, S] of Object.entries(TUTORIAL)) {
+      const i = S.senarai.findIndex(t => t.id === id);
+      if (i >= 0) return pilih(s, i);
+    }
+    pilih('elog', 0);
+  })();
+</script>
+</body>
+</html>

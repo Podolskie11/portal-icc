@@ -40,6 +40,7 @@
 
   /* Tip yang dipaparkan dalam "Tahukah anda?" — tambah/ubah ikut keperluan */
   const TIP = [
+    ['📺', 'Baru pertama kali? Tonton <b>Tutorial video</b> di bahagian Panduan — setiap langkah boleh ditekan.'],
     ['🔔', 'Tekan ikon <b>loceng</b> dalam e-PinjamAset untuk lihat status permohonan anda — tiada lagi emel bertimbun.'],
     ['⌨️', 'Di komputer, tekan kekunci <b>1</b> atau <b>2</b> untuk terus membuka sistem.'],
     ['🖨️', 'Penyelia boleh <b>Jana Borang</b> log kenderaan bulanan — siap untuk dicetak dalam format A4.'],
@@ -263,6 +264,16 @@ kbd {
 @keyframes isi { to { width: 100%; } }
 .tip:hover .bar-masa { animation-play-state: paused; }
 
+/* ---------- Kad tutorial ---------- */
+.tutorial-kad { display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; text-decoration: none; color: inherit; margin-bottom: 12px; transition: transform .2s, border-color .2s; }
+.tutorial-kad:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--amber) 55%, var(--garis)); }
+.tutorial-kad h3 { margin: 0; }
+.tutorial-kad p { margin-top: 2px; }
+.tutorial-ikon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 20px; color: #fff; background: linear-gradient(135deg, #fca311, #e8590c); box-shadow: 0 6px 16px rgba(252,163,17,.35); padding-left: 3px; }
+.tutorial-kad:hover .tutorial-ikon { animation: lompat .5s ease; }
+.panah-tutorial { color: var(--teks-2); transition: transform .2s; }
+.tutorial-kad:hover .panah-tutorial { transform: translateX(3px); }
+
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px;
   min-height: 46px; padding: 0 20px; border-radius: 12px; border: 0; cursor: pointer;
@@ -353,6 +364,12 @@ a.kad-sistem:hover .buka { gap: 10px; }
   </section>
 
   <div class="tajuk-kecil muncul" style="--i:5">Panduan</div>
+
+  <a class="kad tutorial-kad muncul" style="--i:5" href="tutorial.html">
+    <span class="tutorial-ikon">▶</span>
+    <span><h3>Tutorial video</h3><p>Tonton cara guna e-LogKenderaan & e-PinjamAset langkah demi langkah sebelum mula.</p></span>
+    <svg class="ikon panah-tutorial" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
 
   <section class="kad muncul" style="--i:6" id="kad-pasang" hidden>
     <h3><svg class="ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Pasang di telefon</h3>

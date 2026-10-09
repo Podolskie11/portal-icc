@@ -1,9 +1,10 @@
 // Service worker: simpan rangka Portal supaya ia dibuka pantas & boleh dipasang sebagai app.
 // Naikkan VERSI setiap kali index.html dikemas kini supaya telefon pengguna dapat versi baharu.
-const VERSI = 'portal-icc-v3';
+const VERSI = 'portal-icc-v4';
 const FAIL = [
   './',
   './index.html',
+  './tutorial.html',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -24,6 +25,8 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  // Video tutorial dimainkan terus dari rangkaian (fail besar & permintaan "Range")
+  if (req.headers.has('range') || /\.mp4($|\?)/.test(req.url)) return;
   // Rangkaian dahulu (supaya pautan sentiasa terkini), cache jika luar talian.
   // Halaman utama disemak semula dengan pelayan (abaikan cache HTTP 10 minit GitHub Pages).
   e.respondWith(
